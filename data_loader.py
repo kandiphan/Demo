@@ -2,12 +2,12 @@ import pandas as pd
 import os
 
 BASE_DIR = os.path.dirname(__file__)
-PRICE_DIR = os.path.join(BASE_DIR, "price_offline")
+PRICE_DIR = os.path.join(BASE_DIR, "priceoffline")
 
 
-def load_price(symbol):
+def download_price(symbol, start="2020-01-01", end=None):
     """
-    Đọc dữ liệu giá đóng cửa từ file CSV offline
+    Đọc dữ liệu giá đóng cửa của 1 cổ phiếu từ file offline
     Trả về DataFrame:
         - index: thời gian
         - 1 cột: giá đóng cửa (tên cột = mã cổ phiếu)
@@ -23,19 +23,21 @@ def load_price(symbol):
     df["date"] = pd.to_datetime(df["date"])
     df = df.set_index("date").sort_index()
 
+    # đổi tên cột giống y bản online
     df = df.rename(columns={"close_price": symbol})
 
     return df[[symbol]]
 
 
-def load_multiple_prices(symbols):
+def download_multiple_prices(symbols, start="2020-01-01", end=None):
     """
     Load dữ liệu giá cho nhiều cổ phiếu (outer join)
+    Giữ nguyên interface như bản dùng vnstock
     """
     price_dfs = []
 
     for sym in symbols:
-        df = load_price(sym)
+        df = download_price(sym, start=start, end=end)
         if df is not None:
             price_dfs.append(df)
 
@@ -48,9 +50,8 @@ def load_multiple_prices(symbols):
     return prices
 
 
-def load_market_index():
+def download_market_index(start="2020-01-01", end=None):
     """
-    Nếu có file VNINDEX_close_2022_now.csv thì dùng, 
-    không thì tạm thời return None
+    Load VNINDEX offline (nếu có file)
     """
-    return load_price("VNINDEX")
+    return download_price("VNINDEX", start=start, end=end)
