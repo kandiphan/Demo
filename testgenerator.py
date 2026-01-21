@@ -37,10 +37,12 @@ def inline(df, fields):
         parts = [r["ticker"]]
         for f in fields:
             if f in r:
-                parts.append(f"{f} {fnum(r[f])}")
+                if f == "Market_Cap":
+                    parts.append(f"{f} {fcap(r[f])}")
+                else:
+                    parts.append(f"{f} {fnum(r[f])}")
         rows.append(" (" + ", ".join(parts) + ")")
     return " và ".join(rows)
-
 
     
 
@@ -190,3 +192,4 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
