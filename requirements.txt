@@ -6,3 +6,4 @@ cvxpy
 scipy
 matplotlib
 scikit-learn
+openai
