@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 BASE_DIR = os.path.dirname(__file__)
-PRICE_DIR = os.path.join(BASE_DIR, "priceoffline")
+PRICE_DIR = os.path.join(BASE_DIR, "price_offline")
 
 
 def download_price(symbol, start="2020-01-01", end=None):
