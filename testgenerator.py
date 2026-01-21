@@ -104,6 +104,7 @@ def build_comparison_context(table):
         "de": "DE",
         "pb": "PB",
         "bv": "BV",                 # BV = tổng vốn CSH
+        "eps": "EPS"
         "market_cap": "Market_Cap"
     }
     table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
@@ -118,7 +119,7 @@ def build_comparison_context(table):
         if table["BV"].max() < 1e7:           # đang là tỷ
             table["BV"] *= 1e9
 
-    fields = ["Score", "ROA", "DE", "PB", "BV", "Market_Cap"]
+    fields = ["Score", "ROA", "DE", "PB", "BV","EPS", "Market_Cap"]
     return build_context("So sánh doanh nghiệp", table, fields)
 
 
@@ -150,6 +151,7 @@ Phải nêu:
 - So sánh D/E (rủi ro)
 - So sánh P/B (định giá)
 - So sánh BV
+- So sánh EPS (Lợi nhuận trên mỗi cổ phiếu)
 
 Câu kết luận:
 Tổng hợp lại, cổ phiếu đáng ưu tiên đầu tư hơn là ..., vì ...
@@ -165,6 +167,7 @@ def build_ranking_context(table, industry, factor):
         "de": "DE",
         "pb": "PB",
         "bv": "BV",
+        "eps": "EPS"
         "market_cap": "Market_Cap"
     }
     table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
@@ -218,6 +221,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
