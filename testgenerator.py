@@ -104,7 +104,7 @@ def build_comparison_context(table):
         "de": "DE",
         "pb": "PB",
         "bv": "BV",                 # BV = tổng vốn CSH
-        "eps": "EPS"
+        "eps": "EPS",
         "market_cap": "Market_Cap"
     }
     table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
@@ -167,7 +167,7 @@ def build_ranking_context(table, industry, factor):
         "de": "DE",
         "pb": "PB",
         "bv": "BV",
-        "eps": "EPS"
+        "eps": "EPS",
         "market_cap": "Market_Cap"
     }
     table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
@@ -221,6 +221,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
