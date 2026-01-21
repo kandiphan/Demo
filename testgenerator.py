@@ -99,22 +99,24 @@ Từ góc độ đầu tư bền vững, cổ phiếu đáng chú ý nhất là 
 # ===================== COMPARISON =====================
 
 def build_comparison_context(table):
-    # Chuẩn hóa tên cột
     col_map = {
         "roa": "ROA",
         "de": "DE",
         "pb": "PB",
-        "bv": "BV",
+        "bv": "BV",                 # BV = tổng vốn CSH
         "market_cap": "Market_Cap"
     }
     table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
 
-    # === CHUẨN HÓA ĐƠN VỊ GIỐNG RECOMMEND ===
-    # Đảm bảo Market_Cap luôn là ĐỒNG
+    # Chuẩn hóa Market Cap về đồng
     if "Market_Cap" in table.columns:
-        # Nếu đang là đơn vị tỷ thì nhân lại 1e9
-        if table["Market_Cap"].max() < 1e7:  # heuristic: < 10 triệu tỷ
-            table["Market_Cap"] = table["Market_Cap"] * 1e9
+        if table["Market_Cap"].max() < 1e7:   # đang là tỷ
+            table["Market_Cap"] *= 1e9
+
+    # Chuẩn hóa BV về đồng (nếu đang là tỷ)
+    if "BV" in table.columns:
+        if table["BV"].max() < 1e7:           # đang là tỷ
+            table["BV"] *= 1e9
 
     fields = ["Score", "ROA", "DE", "PB", "BV", "Market_Cap"]
     return build_context("So sánh doanh nghiệp", table, fields)
@@ -212,6 +214,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
