@@ -1,0 +1,8 @@
+streamlit
+vnstock
+pandas
+numpy
+cvxpy
+scipy
+matplotlib
+scikit-learn
