@@ -58,7 +58,7 @@ def retrieve_stock_groups(industry):
 
 # -------- Comparison --------
 def get_comparison(tickers):
-    cols = ["ticker", "Score", "Market_Cap", "ROA", "DE", "BV", "PB"]
+    cols = ["ticker", "Score", "Market_Cap", "ROA", "DE", "BV","EPS", "PB"]
     out = df[df["ticker"].isin(tickers)][cols].copy()
     out["Market_Cap"] = out["Market_Cap"] / 1e9  # sang tỷ
     out["BV"] = out["BV"] / 1e9  # sang tỷ
@@ -101,3 +101,4 @@ def get_latest_financials(ticker):
         "income_statement": is_[is_["yearReport"] == year],
         "cash_flow": cf[cf["yearReport"] == year]
     }
+
