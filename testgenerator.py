@@ -184,14 +184,17 @@ CHỈ sao chép và sắp xếp lại dữ liệu trong CONTEXT.
 
 {context}
 
-Yêu cầu:
-- Mỗi cổ phiếu hiển thị trên 1 dòng riêng.
-- Định dạng đúng:
-  MÃ - {factor}: GIÁ_TRỊ (giữ nguyên đơn vị nếu có, ví dụ: tỷ).
-- Thứ tự đúng như bảng.
-- Không diễn giải, không gộp chung một dòng.
+BẮT BUỘC ĐỊNH DẠNG (vi phạm là sai):
+- Mỗi cổ phiếu chiếm đúng 1 dòng.
+- Sau mỗi dòng phải có ký tự xuống dòng.
+- Không được gộp nhiều mã trên cùng một dòng.
 
-Dòng cuối:
+...
+
+- Giữ nguyên đơn vị nếu có (ví dụ: tỷ).
+- Không diễn giải.
+
+Dòng cuối cùng:
 Đây là toàn bộ nhóm dẫn đầu theo {factor} của ngành {industry}.
 """
     return call_llm(prompt)
@@ -215,6 +218,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
