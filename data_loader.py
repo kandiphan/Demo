@@ -6,12 +6,6 @@ PRICE_DIR = os.path.join(BASE_DIR, "priceoffline")
 
 
 def download_price(symbol, start="2020-01-01", end=None):
-    """
-    Đọc dữ liệu giá đóng cửa của 1 cổ phiếu từ file offline
-    Trả về DataFrame:
-        - index: thời gian
-        - 1 cột: giá đóng cửa (tên cột = mã cổ phiếu)
-    """
     file_path = os.path.join(PRICE_DIR, f"{symbol}_close_2022_now.csv")
 
     if not os.path.exists(file_path):
@@ -19,12 +13,19 @@ def download_price(symbol, start="2020-01-01", end=None):
         return None
 
     df = pd.read_csv(file_path)
-
     df["date"] = pd.to_datetime(df["date"])
     df = df.set_index("date").sort_index()
 
-    # đổi tên cột giống y bản online
+    # LỌC THEO THỜI GIAN (GIỮ GIỐNG HÀM ONLINE)
+    if start:
+        df = df[df.index >= pd.to_datetime(start)]
+    if end:
+        df = df[df.index <= pd.to_datetime(end)]
+
     df = df.rename(columns={"close_price": symbol})
+
+    if df.empty:
+        return None
 
     return df[[symbol]]
 
