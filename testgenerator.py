@@ -157,11 +157,22 @@ Tổng hợp lại, cổ phiếu đáng ưu tiên đầu tư hơn là ..., vì .
 # ===================== RANKING =====================
 
 def build_ranking_context(table, industry, factor):
+    # Chuẩn hóa tên cột
+    col_map = {
+        "roa": "ROA",
+        "de": "DE",
+        "pb": "PB",
+        "bv": "BV",
+        "market_cap": "Market_Cap"
+    }
+    table = table.rename(columns={c: col_map[c] for c in table.columns if c in col_map})
+
     return build_context(
         f"Top {len(table)} cổ phiếu ngành {industry} theo {factor}",
         table,
         [factor]
     )
+
 
 def ask_llm_ranking(context, industry, factor):
     prompt = f"""
@@ -201,6 +212,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
