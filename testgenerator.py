@@ -185,12 +185,13 @@ CHỈ sao chép và sắp xếp lại dữ liệu trong CONTEXT.
 {context}
 
 Yêu cầu:
-- 1 đoạn duy nhất.
-- Mỗi mã: MÃ ({factor} = GIÁ_TRỊ đúng như CONTEXT, giữ nguyên đơn vị nếu có).
+- Mỗi cổ phiếu hiển thị trên 1 dòng riêng.
+- Định dạng đúng:
+  MÃ - {factor}: GIÁ_TRỊ (giữ nguyên đơn vị nếu có, ví dụ: tỷ).
 - Thứ tự đúng như bảng.
-- Không diễn giải.
+- Không diễn giải, không gộp chung một dòng.
 
-Câu cuối:
+Dòng cuối:
 Đây là toàn bộ nhóm dẫn đầu theo {factor} của ngành {industry}.
 """
     return call_llm(prompt)
@@ -214,6 +215,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
