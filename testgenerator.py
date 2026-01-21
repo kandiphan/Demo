@@ -173,7 +173,7 @@ CHỈ sao chép và sắp xếp lại dữ liệu trong CONTEXT.
 
 Yêu cầu:
 - 1 đoạn duy nhất.
-- Mỗi mã: MÃ ({factor} = GIÁ_TRỊ). Nếu có xếp hạng về BV hoặc Market Cap thì sau GIÁ_TRỊ phải ghi đơn vị "tỷ"
+- Mỗi mã: MÃ ({factor} = GIÁ_TRỊ đúng như CONTEXT, giữ nguyên đơn vị nếu có).
 - Thứ tự đúng như bảng.
 - Không diễn giải.
 
@@ -181,6 +181,7 @@ Câu cuối:
 Đây là toàn bộ nhóm dẫn đầu theo {factor} của ngành {industry}.
 """
     return call_llm(prompt)
+
 
 # ===================== FINANCIAL REPORT =====================
 
@@ -200,5 +201,6 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
