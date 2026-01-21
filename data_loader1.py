@@ -69,3 +69,4 @@ def download_market_index(start="2020-01-01", end=None):
     Tải dữ liệu VNINDEX (market)
     """
     return download_price("VNINDEX", start=start, end=end)
+
