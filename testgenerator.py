@@ -1,8 +1,8 @@
 from openai import OpenAI
+import streamlit as st
 
 # ===================== LLM SETUP =====================
-GROQ_API_KEY = "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"
-
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 client = OpenAI(
     api_key=GROQ_API_KEY,
