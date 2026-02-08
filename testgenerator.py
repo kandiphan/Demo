@@ -140,21 +140,26 @@ Yêu cầu:
 - Mỗi mã phải kèm đầy đủ:
   Ticker (Score, ROA, D/E, BV, P/B, Market Cap).
 - Sau BV và Market Cap phải ghi đơn vị "tỷ"
-- Lưu ý: Score càng cao cho thấy cấu trúc tài chính càng tối ưu cho khả năng tạo lợi nhuận trên mỗi cổ phiếu trong dài hạn
+Lưu ý về chỉ tiêu:
+- Score phản ánh mức EPS mà doanh nghiệp có thể đạt được dựa trên cấu trúc tài chính hiện tại, so với mặt bằng thị trường.
+- ROA phản ánh hiệu quả sinh lời trên tài sản.
+- EPS phản ánh lợi nhuận trên mỗi cổ phiếu.
+- Không đánh đồng ROA hoặc EPS với Score.
 
 Câu mở đầu:
 "Dựa trên số liệu tài chính, có thể so sánh {a} và {b} như sau:"
 
-Phải nêu:
-- So sánh Score
-- So sánh ROA (sinh lời)
-- So sánh D/E (rủi ro)
-- So sánh P/B (định giá)
-- So sánh BV
-- So sánh EPS (Lợi nhuận trên mỗi cổ phiếu)
+Phải nêu rõ:
+- So sánh Score (chất lượng tổng thể)
+- So sánh ROA (hiệu quả sinh lời)
+- So sánh D/E (mức độ rủi ro tài chính)
+- So sánh P/B (mức độ định giá)
+- So sánh BV (quy mô tài sản)
+- So sánh EPS (lợi nhuận trên mỗi cổ phiếu)
+
 
 Câu kết luận:
-Tổng hợp lại, cổ phiếu đáng ưu tiên đầu tư hơn là ..., vì ...
+ Tổng hợp lại, cổ phiếu đáng ưu tiên đầu tư hơn là ..., vì ...
 """
     return call_llm(prompt)
 
@@ -221,6 +226,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
