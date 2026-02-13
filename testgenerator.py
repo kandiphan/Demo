@@ -77,7 +77,7 @@ CHỈ được sử dụng dữ liệu trong CONTEXT.
 {context}
 
 Yêu cầu:
-- Viết đúng 2 đoạn phân tích + 1 đoạn kết luận.
+- Viết đúng 3 đoạn phân tích + 1 đoạn kết luận.
 - Không bullet, không tiêu đề.
 - Mỗi mã phải kèm: Ticker (Score x.xxx, Market Cap y tỷ).
 - Văn phong học thuật.
@@ -86,13 +86,18 @@ Yêu cầu:
 Câu mở đầu đoạn 1:
 "Dựa vào dữ liệu và mô hình đã sử dụng, ngành {industry} có:"
 Đoạn 1:
-Phân tích nhóm cổ phiếu có Score cao, nhấn mạnh đây là nhóm có tiềm năng tăng trưởng tương đối trong ngành nhưng đi kèm mức độ rủi ro cao hơn do quy mô vốn hóa nhỏ, độ ổn định và thanh khoản hạn chế.
+Phân tích nhóm cổ phiếu có Score cao, nhấn mạnh đây là nhóm có tiềm năng tốt trong việc mang lại thu nhập cho nhà đầu tư. 
 
 Đoạn 2:
 Phân tích nhóm dẫn đầu về quy mô vốn hóa, làm rõ vai trò của các cổ phiếu này như trụ cột ngành, có thanh khoản tốt, biến động thấp và phù hợp với chiến lược đầu tư an toàn, dài hạn.
 
+Đoạn 3 (Lưu ý):
+Viết 1 -2 câu bám sát theo ý này:
+- Các cổ phiếu có Score cao nhưng Market Cap thấp (Market Cap gọi là thấp nếu từ 100 đến dưới 1000 tỷ) có tiềm năng tăng trưởng tương đối cao nhưng đi kèm mức độ rủi ro lớn hơn do quy mô vốn hóa nhỏ, độ ổn định và thanh khoản hạn chế.
+- Ngược lại, các cổ phiếu vừa có Score cao vừa thuộc nhóm vốn hóa lớn thể hiện sự vượt trội toàn diện, phản ánh chất lượng doanh nghiệp cao đi kèm với mức độ ổn định và khả năng chống chịu chu kỳ tốt hơn.
+
 Đoạn kết luận (1–2 câu, không dài hơn):
-Từ góc độ đầu tư bền vững, cổ phiếu đáng chú ý nhất là cổ phiếu thuộc nhóm dẫn đầu về quy mô vốn hóa nhưng có Score cao nhất, thể hiện sự cân bằng giữa chất lượng doanh nghiệp, mức độ ổn định và tiềm năng sinh lời dài hạn.
+Từ góc độ đầu tư bền vững, cổ phiếu đáng chú ý nhất là cổ phiếu thuộc nhóm dẫn đầu về quy mô vốn hóa (ở đoạn 2) nhưng có Score cao nhất, thể hiện sự cân bằng giữa chất lượng doanh nghiệp, mức độ ổn định và tiềm năng sinh lời dài hạn.
 """
     return call_llm(prompt)
 
@@ -145,6 +150,7 @@ Lưu ý về chỉ tiêu:
 - ROA phản ánh hiệu quả sinh lời trên tài sản.
 - EPS phản ánh lợi nhuận trên mỗi cổ phiếu.
 - Không đánh đồng ROA hoặc EPS với Score.
+- Yếu tố Score và Market Cap khá quan trọng trong việc quyết định xem doanh nghiệp nào đáng ưu tiên đầu tư hơn, nhưng cũng phải kèm với các chỉ số khác cũng phải ở mức ổn, không quá xấu.
 
 Câu mở đầu:
 "Dựa trên số liệu tài chính, có thể so sánh {a} và {b} như sau:"
@@ -160,6 +166,7 @@ Phải nêu rõ:
 
 Câu kết luận:
  Tổng hợp lại, cổ phiếu đáng ưu tiên đầu tư hơn là ..., vì ...
+
 """
     return call_llm(prompt)
 
@@ -226,6 +233,7 @@ Sau khi hiển thị nguyên văn các bảng, hãy phân tích:
 Không bịa số, không suy diễn.
 """
     return call_llm(prompt)
+
 
 
 
