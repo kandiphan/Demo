@@ -92,6 +92,8 @@ if st.button("Tối ưu danh mục"):
 
     # Đồng bộ thời gian (GIỐNG EXCEL)
     data = stock_log_returns.join(market_log_returns, how="inner")
+    # ÉP lại đúng khoảng thời gian user chọn
+    data = data[data.index >= pd.to_datetime(start_date)]
     stock_log_returns = data[symbols]
     market_log_returns = data["VNINDEX"]
 
@@ -245,5 +247,6 @@ with st.sidebar:
         )
 
         st.rerun()
+
 
 
